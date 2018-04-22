@@ -1,9 +1,15 @@
 pipeline {
-    agent { docker 'maven:3.3.3' }
-    stages {
-        stage('build') {
+    agent any
+    stages{
+        stage('Build'){
             steps {
-                bat 'mvn --version'
+                sh 'mvn clean package'
+            }
+            post {
+                success {
+                    echo 'Now Archiving...'
+                    archiveArtifacts artifacts: '**/target/*.war'
+                }
             }
         }
     }
