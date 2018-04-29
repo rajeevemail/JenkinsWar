@@ -27,7 +27,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "scp -i ubuntu.pem **/target/*.war ubuntu@${params.tomcat}:/var/lib/jenkins/jobs/first_pipeline/workspace/src/main/webapp"
+                        sh "scp -i ubuntu.pem **/target/*.war ubuntu@${params.tomcat}:/home/ubuntu/tomcat/apache-tomcat-7.0.86/webapps"
                     }
                 }
 
